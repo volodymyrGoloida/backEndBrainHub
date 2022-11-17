@@ -1,0 +1,54 @@
+version: "3.3"
+
+services:
+  postgresdb:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=brain_hub
+    ports:
+      - 5436:5432
+    volumes:
+      - postgresdb-volume:/var/lib/postgresql/data
+    networks:
+      - integration
+
+  postgresdb_test:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=brain_hub_test
+    ports:
+      - 5437:5432
+    volumes:
+      - postgresdb_test_volume:/var/lib/postgresql/data
+    networks:
+      - integration
+
+  api:
+    env_file: .env
+    build: .
+    networks:
+      - integration
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm start
+    depends_on:
+      - postgresdb
+    ports:
+      - 5835:5835
+
+networks:
+  integration:
+    driver: bridge
+
+volumes:
+  postgresdb-volume:
+    driver: local
+  postgresdb_test_volume:
+    driver: local
