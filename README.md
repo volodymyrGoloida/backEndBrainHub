@@ -57,13 +57,13 @@ cp .env.sample .env
     npm install
 ```
 
-2. After that run your docker with
+2. After that run your application with
 
 ```sh
-    npm run start:docker:build
+    npm run start:docker
 ```
 
-3. Open second terminal and run cmd
+3. Open second terminal and run cmd ((don't close terminal where docker is running))
 
 ```sh
     npm run test
