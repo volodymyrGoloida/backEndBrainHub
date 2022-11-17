@@ -32,11 +32,7 @@ Project is created with:
 cp .env.sample .env
 ```
 
-2. Copy and fill `docker-compose.yml` file
 
-```sh
-cp docker-compose.sample.yml docker-compose.yml
-```
 
 ## Setup locally
 
