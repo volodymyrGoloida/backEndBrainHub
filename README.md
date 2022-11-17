@@ -63,7 +63,7 @@ cp .env.sample .env
     npm run start:docker:build
 ```
 
-3. Open new terminal and run cmd
+3. Open second terminal and run cmd
 
 ```sh
     npm run test
